@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge AI in Nature - 41 Slides</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            background: white;
+            /* Default background */
+        }
+
+        /* DARK THEME SLIDE */
+        .slide.dark {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f1f5f9;
+        }
+
+        /* LIGHT THEME SLIDE */
+        .slide.light {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            color: #0f172a;
+        }
+
+        /* BLUE ACCENT SLIDES */
+        .slide.accent {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+        }
+
+        /* LAYOUT UTILITIES */
+        .col {
+            flex-direction: column;
+        }
+
+        .row {
+            flex-direction: row;
+        }
+
+        .center {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .between {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .start {
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .end {
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .pad-16 {
+            padding: 4rem;
+        }
+
+        .pad-12 {
+            padding: 3rem;
+        }
+
+        .pad-8 {
+            padding: 2rem;
+        }
+
+        .gap-lg {
+            gap: 2rem;
+        }
+
+        .gap-md {
+            gap: 1.5rem;
+        }
+
+        .gap-sm {
+            gap: 1rem;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .meta {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        .accent-text {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        .slide.light .accent-text {
+            color: #0284c7;
+        }
+
+        /* SLIDE NUMBER */
+        .slide-number {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 12px;
+            color: #666;
+            opacity: 0.4;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            z-index: 100;
+            /* Ensure visibility */
+        }
+
+        /* CONTENT BOXES */
+        .box-dark {
+            background-color: rgba(30, 41, 59, 0.8);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .box-light {
+            background-color: rgba(241, 245, 249, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #0284c7;
+        }
+
+        .box-compact {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            border-radius: 8px;
+            flex: 1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 0.85rem;
+        }
+
+        /* ACCENT ELEMENTS */
+        .line-separator {
+            height: 3px;
+            background-color: #38bdf8;
+            width: 80px;
+            margin: 1.5rem 0;
+        }
+
+        .slide.light .line-separator {
+            background-color: #0284c7;
+        }
+
+        /* LIST STYLES */
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-size: 1.5rem;
+        }
+
+        .slide.light li:before {
+            color: #0284c7;
+        }
+
+        /* COMMON UTILS */
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .split-50 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* SLIDE 0: COVER STYLES */
+        .slide-0 {
+            background-color: white;
+            color: #0f172a;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .slide-0::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/IFEVS_bike_shell_clean.png') no-repeat center center;
+            background-size: 115%;
+            background-position: 90% center;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .slide-0-left {
+            flex: 1;
+            padding: 10px 4rem 4rem 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .decor-bars-left {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .decor-bar {
+            width: 20px;
+            height: 120px;
+            background-color: #0f172a;
+        }
+
+        .slide-0-footer {
+            margin-top: auto;
+            color: #0f172a;
+            font-weight: bold;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            position: absolute;
+            bottom: 4rem;
+        }
+
+        .slide-0-card.bee-card {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 45%;
+            height: auto;
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            z-index: 5;
+        }
+
+        .slide-0-card.bee-card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        }
+
+        /* PLACEHOLDER STYLE */
+        .placeholder-content {
+            width: 100%;
+            height: 70%;
+            background-color: #f0f0f0;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 18px;
+        }
+
+        /* Slide Specific Styles Mapped from Previous File */
+        .slide-2-left,
+        .slide-3-left,
+        .slide-4-left,
+        .slide-5-left,
+        .slide-6-left,
+        .slide-7-left,
+        .slide-8-left,
+        .slide-9-left,
+        .slide-10-left,
+        .slide-13-left,
+        .slide-15-left,
+        .slide-16-left,
+        .slide-23-left,
+        .slide-25-left {
+            flex: 0 0 60%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-color: transparent;
+        }
+
+        .slide-2-right,
+        .slide-3-right,
+        .slide-4-right,
+        .slide-5-right,
+        .slide-6-right,
+        .slide-7-right,
+        .slide-8-right,
+        .slide-9-right,
+        .slide-10-right,
+        .slide-13-right,
+        .slide-15-right,
+        .slide-16-right,
+        .slide-25-right {
+            flex: 0 0 40%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 3rem 3rem 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Specific adjustments */
+        .slide-23-right {
+            position: relative;
+            z-index: 2;
+            width: 32%;
+            max-height: 54%;
+            margin-right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SLIDE 0: COVER -->
+    <section class="slide slide-0" id="slide-0">
+        <div class="decor-bars-left">
+            <div class="decor-bar"></div>
+            <div class="decor-bar"></div>
+            <div class="decor-bar"></div>
+        </div>
+
+        <div class="slide-0-left">
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 0;">
+                <h1>Edge AI in Nature</h1>
+                <p class="subtitle">Insect-Inspired Neuromorphic Reflex Islands<br>for Safety-Critical Edge Systems</p>
+                <p class="center-text"
+                    style="font-size: 1.35rem; font-style: italic; color: #64748b; margin-top: 2rem; max-width: 90%; border-left: 3px solid #0f172a; padding-left: 1rem;">
+                    Nature's Supercomputers. Can insects hold the blueprint for our entire technological future?
+                </p>
+            </div>
+            <div class="slide-0-footer">IFEVS.COM</div>
+        </div>
+
+        <div class="slide-0-card bee-card">
+            <img src="images/immagine cover.jpg" alt="Bee AI">
+        </div>
+
+        <div class="slide-number">0</div>
+    </section>
+
+    <!-- SLIDE 1: HOOK - WHAT IF A BEE... -->
+    <section class="slide slide-1" id="slide-1" style="position: relative; background: white; overflow: hidden;">
+        <div class="slide-number">1</div>
+        <div class="slide-1-bg"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/circuit_background_bright_blue.png') center/cover no-repeat; opacity: 0.1; z-index: 0;">
+        </div>
+
+        <!-- Title at the top, full width (upper half) -->
+        <div style="position: absolute; top: 12%; left: 6rem; width: 85%; z-index: 2;">
+            <h1
+                style="font-size: 3.5rem; font-weight: 700; color: #0f172a; line-height: 1.2; margin: 0; text-align: left;">
+                What if a <span style="background-color: #fde047; padding: 0 0.5rem; border-radius: 8px;">bee</span>
+                holds the<br>secret to our tech <span
+                    style="background-color: #fde047; padding: 0 0.5rem; border-radius: 8px;">future</span></h1>
+        </div>
+
+        <!-- Quote at the bottom left, aligned with the image height -->
+        <div style="position: absolute; bottom: 15%; left: 6rem; width: 45%; z-index: 2;">
+            <p
+                style="font-size: 1.5rem; color: #334155; font-style: italic; border-left: 4px solid #fde047; padding-left: 1.5rem;">
+                "Imagine an artificial intelligence...<br>it's not. It's the insect world."</p>
+        </div>
+
+        <!-- Bee image positioned exactly like Slide 0 -->
+        <div class="slide-0-card bee-card">
+            <img src="images/immagine cover.jpg" alt="Bee AI">
+        </div>
+    </section>
+
+    <!-- SLIDE 2: FLY'S COMPOUND EYE -->
+    <section class="slide" id="slide-2"
+        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <div class="slide-2-left">
+            <img src="images/fly_compound_eye_fixed.png" alt="Fly Compound Eye">
+        </div>
+        <div class="slide-2-right">
+            <h2 style="color: #38bdf8;">A Single Tiny Fly</h2>
+            <p style="font-size: 1.25rem; font-weight: 600; color: #f1f5f9;">Can insects hold the blueprint for our
+                entire technological future?</p>
+            <div class="box-light"
+                style="background-color: rgba(255, 255, 255, 0.05); border-left: 5px solid #38bdf8; border: 1px solid rgba(255, 255, 255, 0.1); color: #cbd5e1;">
+                <p style="margin: 0; font-style: italic; color: #cbd5e1;">Dodges your swatter in an instant. Calculates
+                    a maneuver in milliseconds.</p>
+            </div>
+        </div>
+        <div class="slide-number">2</div>
+    </section>
+
+    <!-- SLIDE 3: BRAIN SIZE OF A PINHEAD -->
+    <section class="slide" id="slide-3"
+        style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b;">
+        <div class="slide-3-left" style="padding: 0;">
+            <img src="images/fly_brain_comparison.png" alt="Brain Scale Comparison">
+        </div>
+        <div class="slide-3-right">
+            <h2 style="color: #0284c7;">Brain Size of a Pinhead</h2>
+            <p style="color: #334155; font-weight: 700;">Powered by less energy than a small LED</p>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">~15-20mW</p> <!-- Enhancement -->
+            <div class="box-light"
+                style="background-color: white; border-left: 5px solid #0284c7; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); color: #334155;">
+                <p style="margin-bottom: 1rem;">This incredible efficiency isn't accidental.</p>
+                <p style="margin: 0;">It comes from fundamental architectural principles insects have perfected for
+                    hundreds of millions of years.</p>
+            </div>
+        </div>
+        <div class="slide-number">3</div>
+    </section>
+
+    <!-- SLIDE 4: WHAT IS EDGE AI? -->
+    <section class="slide" id="slide-4"
+        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <div class="slide-4-left">
+            <img src="images/Edge_AI_Definition_v2.jpg" alt="Edge AI Concept">
+        </div>
+        <div class="slide-4-right">
+            <h2 style="color: #38bdf8;">What is Edge AI?</h2>
+            <div class="line-separator"></div>
+            <div class="box-dark"
+                style="background-color: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 5px solid #38bdf8; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 1.5rem;">
+                <p style="color: #cbd5e1; font-size: 1.125rem; line-height: 1.8;">Processing data <span
+                        class="accent-text">locally and instantly</span> right there on the device</p>
+                <p style="color: #94a3b8; margin-top: 1rem; font-size: 1rem;">No waiting for cloud responses. No
+                    latency. No external infrastructure.</p>
+            </div>
+            <p style="color: #38bdf8; margin-top: 1.5rem; font-weight: 700; font-size: 1.125rem; text-align: center;">
+                For drones:
+                convenient.<br>For insects: life or death.</p>
+        </div>
+        <div class="slide-number">4</div>
+    </section>
+
+    <!-- SLIDE 5: SURVIVAL REFLEX -->
+    <section class="slide" id="slide-5"
+        style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b;">
+        <div class="slide-5-left">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/bba2ef4f-79e2-48b9-b345-8b0cc6afbf72.png"
+                alt="Survival Reflex">
+        </div>
+        <div class="slide-5-right">
+            <h2 style="color: #0284c7;">The Millisecond That Matters</h2>
+            <div class="box-light"
+                style="background-color: white; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #0284c7; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                <p>A fly processes visual information, calculates a maneuver, and executes it in <span
+                        style="font-weight: 700; color: #0284c7;">just a few milliseconds</span>.</p>
+                <p style="font-weight: 700; color: #0284c7;">That's a feat our best microdrones still struggle to match.
+                </p>
+                <p style="font-style: italic; color: #64748b; margin-bottom: 0;">And it does this with a brain literally
+                    the size of a pinhead.</p>
+            </div>
+        </div>
+        <div class="slide-number">5</div>
+    </section>
+
+    <!-- SLIDE 6: LATENCY COMPARISON -->
+    <section class="slide" id="slide-6"
+        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <div class="slide-6-left">
+            <img src="images/Latency_Comparison_v2.png" alt="Latency Comparison"
+                style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div class="slide-6-right">
+            <h2 style="color: #38bdf8;">Why Edge AI Matters</h2>
+            <p class="subtitle" style="color: #94a3b8; margin-bottom: 2rem;">Latency Comparison</p>
+            <p style="color: #cbd5e1;">Human blink takes 100 milliseconds...</p>
+            <p style="color: #cbd5e1;">Neuromorphic eye catches it in 1-2ms</p>
+        </div>
+        <div class="slide-number">6</div>
+    </section>
+
+    <!-- SLIDE 7: TWO-TIER BRAIN ARCHITECTURE -->
+    <section class="slide" id="slide-7"
+        style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b;">
+        <div class="slide-7-left">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/3de8d42d-9947-44e6-931d-9ba4fe03964e.png"
+                alt="Two-Tier Brain">
+        </div>
+        <div class="slide-7-right">
+            <h2 style="color: #0284c7;">The Two-Tier Brain</h2>
+            <p style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Instead of one unified center,
+                insects have <span style="color: #0284c7;">two brains working in parallel</span></p>
+            <div class="box-light"
+                style="background-color: white; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #0284c7; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
+                <h3 style="color: #0284c7; font-size: 1.25rem;">Reflex Tier</h3>
+                <p>Fast & Instant • React, don't think</p>
+            </div>
+            <div class="box-light"
+                style="background-color: white; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #0284c7; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                <h3 style="color: #0284c7; font-size: 1.25rem;">Policy Tier</h3>
+                <p>Slow & Smart • Plan and learn</p>
+            </div>
+        </div>
+        <div class="slide-number">7</div>
+    </section>
+
+    <!-- SLIDE 8: REFLEX TIER IN ACTION -->
+    <section class="slide" id="slide-8"
+        style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b;">
+        <div class="slide-8-left">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/53f7d169-10a0-4d5f-be72-c0f8c63f73ef.png"
+                alt="Reflex Tier Action">
+        </div>
+        <div class="slide-8-right">
+            <h2 style="color: #0284c7;">The Reflex Tier</h2>
+            <p style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">React, Don't Think</p>
+            <div class="box-light"
+                style="background-color: white; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #0284c7; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                <ul>
+                    <li>Hardwired circuits for immediate survival</li>
+                    <li>Dodge a predator</li>
+                    <li>Stabilize in sudden wind</li>
+                    <li>Microsecond responses</li>
+                </ul>
+                <p style="font-weight: 700; color: #0284c7; margin-top: 1rem;">Pure instinct. Pure reaction.</p>
+            </div>
+        </div>
+        <div class="slide-number">8</div>
+    </section>
+
+    <!-- SLIDE 9: POLICY TIER -->
+    <section class="slide" id="slide-9"
+        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <div class="slide-9-left">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/bf7093e4-265c-4dd1-ba27-9a054db8b83a.png"
+                alt="Policy Navigation">
+        </div>
+        <div class="slide-9-right">
+            <h2 style="color: #38bdf8;">The Policy Tier</h2>
+            <p style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600; color: #f1f5f9;">Slower & Smarter</p>
+            <div class="box-dark"
+                style="background-color: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 5px solid #38bdf8; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <ul>
+                    <li>Planning and learning</li>
+                    <li>Route optimization</li>
+                    <li>Strategy and adaptation</li>
+                </ul>
+                <p style="font-weight: 700; color: #38bdf8; margin-top: 1rem;">Can NEVER interrupt the Reflex Tier</p>
+            </div>
+        </div>
+        <div class="slide-number">9</div>
+    </section>
+
+    <!-- SLIDE 10: FROM BIOLOGY TO SILICON -->
+    <section class="slide" id="slide-10"
+        style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b;">
+        <div class="slide-10-left">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/a307a92a-b9f8-470b-9a5f-1b32e56440f9.png"
+                alt="Biology to Silicon">
+        </div>
+        <div class="slide-10-right">
+            <h2 style="color: #0284c7;">From Biology to Silicon</h2>
+            <div class="box-light"
+                style="background-color: white; padding: 2rem; border-radius: 8px; border-left: 5px solid #0284c7; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                <p style="color: #0f172a; font-size: 1.125rem; margin-bottom: 1.5rem; line-height: 1.6;">How do we
+                    translate insect principles into electronics?</p>
+                <p style="color: #0f172a; margin-bottom: 1rem;">We can't use traditional computer chips.</p>
+                <p style="color: #0f172a; font-weight: 700; color: #0284c7;">We need hardware designed to think like an
+                    insect brain.</p>
+                <p style="color: #64748b; margin-top: 1.5rem; font-size: 0.95rem; font-style: italic;">That's where
+                    neuromorphic and spintronic technologies come in.</p>
+            </div>
+        </div>
+        <div class="slide-number">10</div>
+    </section>
+
+    <!-- SLIDE 11: THE BEE NAVIGATOR -->
+    <section class="slide" id="slide-11"
+        style="background: url('https://user-gen-media-assets.s3.amazonaws.com/seedream_images/cc77bdfb-24db-476e-ba6e-64c321c4c648.png') no-repeat center center; background-size: cover;">
+        <div
+            style="position: absolute; bottom: 3rem; right: 3rem; width: 400px; display: flex; flex-direction: column; align-items: flex-end; gap: 1rem;">
+            <h2
+                style="font-size: 2rem; color: #fff; margin-bottom: 0.5rem; text-align: right; font-weight: 800; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);">
+                The Bee: Navigator</h2>
+            <div style="display: flex; flex-direction: row; gap: 1rem; width: 100%; justify-content: flex-end;">
+                <div class="box-compact" style="border-left: 3px solid #0284c7;">
+                    <h3 style="color: #0284c7; font-size: 1rem; margin-bottom: 0.5rem;">Reflex Tier</h3>
+                    <ul style="padding-left: 0;">
+                        <li style="margin-bottom: 0.25rem; color: #0f172a; line-height: 1.3; padding-left: 1.5rem;">Fast
+                            collision avoidance</li>
+                        <li style="margin-bottom: 0.25rem; color: #0f172a; line-height: 1.3; padding-left: 1.5rem;">
+                            Landing
+                            control</li>
+                    </ul>
+                </div>
+                <div class="box-compact" style="border-left: 3px solid #38bdf8;">
+                    <h3 style="color: #0369a1; font-size: 1rem; margin-bottom: 0.5rem;">Policy Tier</h3>
+                    <ul style="padding-left: 0;">
+                        <li style="margin-bottom: 0.25rem; color: #0f172a; line-height: 1.3; padding-left: 1.5rem;">
+                            Route
+                            planning</li>
+                        <li style="margin-bottom: 0.25rem; color: #0f172a; line-height: 1.3; padding-left: 1.5rem;">Nav.
+                            memory</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">11</div>
+    </section>
+
+    <!-- SLIDE 12: HARDWARE INTRO (Placeholder) -->
+    <section class="slide" id="slide-12">
+        <div class="slide-number">12</div>
+        <div
+            style="padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <h1 style="color: #0284c7;">Hardware Technologies</h1>
+            <p style="font-size: 1.5rem;">Neuromorphic & Spintronic</p>
+            <p style="color: #666; font-style: italic; margin-top: 2rem;">"The hardware that makes this possible..."</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 13: NEUROMORPHIC VS TRADITIONAL -->
+    <section class="slide flex" id="slide-13"
+        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <div class="split-50" style="padding: 0; background: transparent;">
+            <img src="images/Neuromorphic_vs_Traditional.png" alt="Neuromorphic vs Traditional Computing"
+                style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div class="split-50" style="padding: 3rem; justify-content: center;">
+            <h2 style="color: #38bdf8; font-size: 2rem; font-weight: 800;">The Hardware Shift</h2>
+            <p class="subtitle" style="color: #94a3b8; margin-bottom: 2rem;">Event-Driven vs Clock-Driven</p>
+            <div class="box-dark" style="margin-bottom: 1.5rem;">
+                <h3 style="color: #cbd5e1; font-size: 1.2rem;">Traditional Computing</h3>
+                <p style="font-size: 0.95rem;">Constant clock cycle burns power even when idle.</p>
+            </div>
+            <div class="box-dark" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                <h3 style="color: #38bdf8; font-size: 1.2rem;">Neuromorphic Computing</h3>
+                <p style="font-size: 0.95rem;">Asynchronous, event-driven spikes.</p>
+            </div>
+        </div>
+        <div class="slide-number">13</div>
+    </section>
+
+    <!-- SLIDE 14: MRAM & SPINTRONICS -->
+    <section class="slide flex" id="slide-14"
+        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <div class="split-50" style="padding: 0; background: transparent;">
+            <img src="images/MRAM_Technology_Stack.png" alt="MRAM Technology Stack"
+                style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div class="split-50" style="padding: 3rem; justify-content: center;">
+            <h2 style="color: #38bdf8;">MRAM & Spintronics</h2>
+            <ul style="color: #cbd5e1;">
+                <li><strong>Magnetic Tunnel Junctions:</strong> Data stored in electron spin orientation.</li>
+                <li><strong>Zero Leakage:</strong> Retains data without power.</li>
+            </ul>
+        </div>
+        <div class="slide-number">14</div>
+    </section>
+
+    <!-- SLIDE 15: THERMOREGULATION CHALLENGE -->
+    <section class="slide dark col center pad-16" id="slide-15">
+        <h2>The Energy Secret: Thermoregulation</h2>
+        <p style="color: #cbd5e1; margin-top: 2rem; font-size: 1.125rem;">A fast brain is useless without an efficient
+            engine</p>
+        <div class="line-separator"></div>
+        <p style="color: #94a3b8; margin-top: 2rem; max-width: 700px;">Insects maintain nearly <span
+                class="accent-text">constant mechanical efficiency</span></p>
+        <div class="slide-number">15</div>
+    </section>
+
+    <!-- SLIDE 16: FOUR THERMAL PHASES -->
+    <section class="slide light col center pad-16" id="slide-16">
+        <h2 style="color: #0284c7; margin-bottom: 2rem;">The Four Thermal Phases</h2>
+        <div style="display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center;">
+            <div class="box-light" style="flex: 1; min-width: 160px; padding: 1.5rem;">
+                <h3 style="color: #0284c7; margin-bottom: 0.75rem;">REST 🌙</h3>
+                <p style="font-size: 0.95rem;">Minimal heat generation</p>
+            </div>
+            <div class="box-light" style="flex: 1; min-width: 160px; padding: 1.5rem;">
+                <h3 style="color: #0284c7; margin-bottom: 0.75rem;">WARM-UP 🔥</h3>
+                <p style="font-size: 0.95rem;">Muscle shivering</p>
+            </div>
+            <div class="box-light" style="flex: 1; min-width: 160px; padding: 1.5rem;">
+                <h3 style="color: #0284c7; margin-bottom: 0.75rem;">WORK ⚙️</h3>
+                <p style="font-size: 0.95rem;">Full power operation</p>
+            </div>
+            <div class="box-light" style="flex: 1; min-width: 160px; padding: 1.5rem;">
+                <h3 style="color: #0284c7; margin-bottom: 0.75rem;">COOL-DOWN ❄️</h3>
+                <p style="font-size: 0.95rem;">Repay thermal debt</p>
+            </div>
+        </div>
+        <div class="slide-number">16</div>
+    </section>
+
+    <!-- SLIDE 17: REAL WORLD EXAMPLES INTRO -->
+    <section class="slide dark col center pad-16" id="slide-17">
+        <h2>Two Real-World Examples</h2>
+        <p style="color: #cbd5e1; margin-top: 2rem;">How these principles work in practice</p>
+        <div style="display: flex; gap: 2rem; margin-top: 2.5rem; max-width: 800px;">
+            <div style="flex: 1; text-align: center;">
+                <p style="color: #38bdf8; font-weight: 700;">I-FEVS Thruster</p>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <p style="color: #38bdf8; font-weight: 700;">Cargo E-Bike</p>
+            </div>
+        </div>
+        <div class="slide-number">17</div>
+    </section>
+
+    <!-- SLIDE 18: I-FEVS THRUSTER SECTION INTRO -->
+    <section class="slide accent col center pad-16" id="slide-18">
+        <h2 style="margin-bottom: 1.5rem;">IFEVS Thruster</h2>
+        <p style="color: #ffffff; font-size: 1.125rem; margin-bottom: 2rem;">Insect-Inspired Fuel-Based Propulsion</p>
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 8px; max-width: 750px;">
+            <p style="color: #ffffff; margin-bottom: 1rem;">Maintains a <span
+                    style="font-weight: 700; color: #fef3c7;">hot core</span></p>
+            <p style="color: #ffffff; margin-bottom: 1rem;">Modulates thrust through frequency & duty-cycle</p>
+        </div>
+        <div class="slide-number">18</div>
+    </section>
+
+    <!-- SLIDE 19: I-FEVS HOT-CORE CONCEPT -->
+    <section class="slide flex" id="slide-19"
+        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <div class="split-50" style="padding: 0; background: transparent;">
+            <img src="images/IFEVS_vs_Turbine_CrossSection.png" alt="IFEVS Hot-Core vs Turbine"
+                style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div class="split-50" style="padding: 1.5rem 2rem; justify-content: center;">
+            <h2 style="color: #38bdf8;">The Natural Engine</h2>
+            <p style="color: #cbd5e1;">IFEVS Hot-Core Architecture</p>
+        </div>
+        <div class="slide-number">19</div>
+    </section>
+
+    <!-- SLIDE 20: I-FEVS FLAT-BAND EFFICIENCY -->
+    <section class="slide" id="slide-20"
+        style="display: flex; flex-direction: row; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <!-- LEFT: Image -->
+        <div
+            style="flex: 0 0 60%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+            <img src="images/IFEVS_Flat_Band_Efficiency.jpg" alt="Flat-Band Efficiency Graph"
+                style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);">
+        </div>
+
+        <!-- RIGHT: Text Content -->
+        <div style="flex: 0 0 40%; padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
+
+            <!-- Header -->
+            <div style="margin-bottom: 2rem;">
+                <h2 style="color: #00d4ff; font-size: 2rem; margin-bottom: 0.5rem; line-height: 1.2;">
+                    FLAT-BAND<br>EFFICIENCY</h2>
+                <p style="color: #cbd5e1; font-size: 1rem;">Why I-FEVS Outperforms Traditional Turbines</p>
+            </div>
+
+            <!-- Traditional Annotation -->
+            <div style="margin-bottom: 1.5rem; border-left: 3px solid #ff4444; padding-left: 1rem;">
+                <h3 style="color: #ff4444; font-size: 0.95rem; margin-bottom: 0.25rem;">TRADITIONAL TURBINE</h3>
+                <ul style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.4; padding-left: 0; list-style: none;">
+                    <li>• Peak: 38% (nominal only)</li>
+                    <li>• Window: Narrow ±10%</li>
+                    <li>• Off-peak: Drops to 10-20%</li>
+                </ul>
+            </div>
+
+            <!-- I-FEVS Annotation -->
+            <div style="margin-bottom: 1.5rem; border-left: 3px solid #00d4ff; padding-left: 1rem;">
+                <h3 style="color: #00d4ff; font-size: 0.95rem; margin-bottom: 0.25rem;">I-FEVS FLAT-BAND</h3>
+                <ul style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.4; padding-left: 0; list-style: none;">
+                    <li>• Sustained: 40-42%</li>
+                    <li>• Window: Wide ±30%</li>
+                    <li>• Flexible & Robust</li>
+                </ul>
+            </div>
+
+            <!-- Bottom Callout -->
+            <div style="margin-top: 1rem;">
+                <p style="font-style: italic; color: #94a3b8; font-size: 0.9rem; line-height: 1.4;">"Maintains optimal
+                    efficiency even under varying real-world load conditions"</p>
+            </div>
+        </div>
+
+        <div class="slide-number">20</div>
+    </section>
+
+    <!-- SLIDE 21: I-FEVS THRUSTER METRICS -->
+    <section class="slide" id="slide-21"
+        style="display: flex; flex-direction: row; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9;">
+        <!-- LEFT: Dashboard Image -->
+        <div
+            style="flex: 0 0 60%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+            <img src="images/IFEVS_Thruster_Metrics_v2.jpg" alt="Thruster Performance Metrics Dashboard"
+                style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);">
+        </div>
+
+        <!-- RIGHT: Text Content -->
+        <div style="flex: 0 0 40%; padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
+
+            <!-- Header -->
+            <div style="margin-bottom: 2rem;">
+                <h2 style="color: #00d4ff; font-size: 2rem; margin-bottom: 0.5rem; line-height: 1.2;">THE NUMBERS</h2>
+                <p style="color: #cbd5e1; font-size: 1rem;">What the Performance Metrics Actually Show</p>
+            </div>
+
+            <!-- Metrics List -->
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Efficiency -->
+                <div style="border-left: 3px solid #00d4ff; padding-left: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span style="color: #00d4ff; font-size: 1.5rem; font-weight: bold;">42%</span>
+                        <span style="color: #cbd5e1; font-size: 0.85rem;">Efficiency</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #94a3b8;">vs 38% Peak (Traditional)</div>
+                    <div style="font-size: 0.8rem; color: #4ade80; font-weight: bold;">+73% Real-world Avg</div>
+                </div>
+
+                <!-- Response -->
+                <div style="border-left: 3px solid #00d4ff; padding-left: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span style="color: #00d4ff; font-size: 1.5rem; font-weight: bold;">&lt;50ms</span>
+                        <span style="color: #cbd5e1; font-size: 0.85rem;">Response</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #94a3b8;">vs 200ms (Traditional)</div>
+                    <div style="font-size: 0.8rem; color: #4ade80; font-weight: bold;">4-10x Faster</div>
+                </div>
+
+                <!-- Window -->
+                <div style="border-left: 3px solid #00d4ff; padding-left: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span style="color: #00d4ff; font-size: 1.5rem; font-weight: bold;">±30%</span>
+                        <span style="color: #cbd5e1; font-size: 0.85rem;">Op. Window</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #94a3b8;">vs ±10% (Traditional)</div>
+                    <div style="font-size: 0.8rem; color: #4ade80; font-weight: bold;">3x Wider Range</div>
+                </div>
+
+                <!-- Stability -->
+                <div style="border-left: 3px solid #00d4ff; padding-left: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span style="color: #00d4ff; font-size: 1.5rem; font-weight: bold;">±2°C</span>
+                        <span style="color: #cbd5e1; font-size: 0.85rem;">Stability</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #94a3b8;">vs ±15°C (Traditional)</div>
+                    <div style="font-size: 0.8rem; color: #4ade80; font-weight: bold;">7.5x More Stable</div>
+                </div>
+            </div>
+
+            <!-- Bottom Callout -->
+            <div style="margin-top: 1.5rem;">
+                <p style="font-style: italic; color: #94a3b8; font-size: 0.85rem; line-height: 1.4;">"Fundamentally
+                    better suited for real-world cargo e-bike applications"</p>
+            </div>
+        </div>
+
+        <div class="slide-number">21</div>
+    </section>
+
+    <!-- SLIDE 22: THERMOREGULATION -->
+    <section class="slide" id="slide-22"
+        style="background: linear-gradient(135deg, #0a1628 0%, #1a2838 100%); color: #ffffff; display: flex; align-items: center; justify-content: center; padding: 0; position: relative;">
+
+        <!-- Main Diagram Full Height -->
+        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <img src="images/Thermoregulation_4Phase_Cycle_v2.jpg" alt="4-Phase Thermal Cycle"
+                style="height: 100%; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+
+        <div class="slide-number">22</div>
+    </section>
+
+    <!-- SLIDE 23: SPACER -->
+    <section class="slide" id="slide-23">
+        <div class="slide-number">23</div>
+        <div class="placeholder-content">PLACEHOLDER - TRANSITION</div>
+    </section>
+
+    <!-- SLIDE 24: E-BIKE SAFETY SHELL INTRO -->
+    <section class="slide" id="slide-24" style="display: flex; flex-direction: row; background: #fff;">
+        <div
+            style="flex: 0 0 60%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #f8fafc; overflow: hidden;">
+            <img src="images/IFEVS bike shell3.jpg" alt="Cargo E-Bike Safety Shell"
+                style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div style="flex: 0 0 40%; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center;">
+            <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: #0f172a; line-height: 1.2;">Cargo-Bike<br>Safety
+                Shell</h2>
+            <p class="subtitle" style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #0284c7; font-weight: 600;">
+                Solar-Assisted Urban Delivery</p>
+            <ul style="font-size: 0.95rem; line-height: 1.5; color: #334155;">
+                <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; list-style: none;"><strong>Sensing:</strong>
+                    Cameras + inertial sensors provide insect-like awareness</li>
+                <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; list-style: none;"><strong>Processing:</strong>
+                    Neuromorphic Reflex Island detects obstacles in real-time</li>
+                <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; list-style: none;"><strong>Feedback:</strong>
+                    Haptic cues alert rider to looming obstacles</li>
+                <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; list-style: none;"><strong>Energy:</strong>
+                    Solar panels cover 60-80% of daily e-bike energy needs</li>
+                <li
+                    style="margin-bottom: 0; padding-left: 1.5rem; list-style: none; color: #dc2626; font-weight: bold; font-size: 1rem;">
+                    ⚡ Latency: &lt;5 ms<br><span style="font-weight: normal; font-size: 0.85rem; color: #64748b;">(20×
+                        faster than human blink)</span></li>
+            </ul>
+        </div>
+        <div class="slide-number">24</div>
+    </section>
+
+    <!-- SLIDE 25: PROBLEM STATEMENT (Placeholder) -->
+    <section class="slide" id="slide-25">
+        <div class="slide-number">25</div>
+        <div class="placeholder-content">PLACEHOLDER - PROBLEM STATEMENT</div>
+    </section>
+
+    <!-- SLIDE 26: SENSOR DETAILS (Placeholder) -->
+    <section class="slide" id="slide-26">
+        <div class="slide-number">26</div>
+        <div class="placeholder-content">PLACEHOLDER - SENSOR DETAILS</div>
+    </section>
+
+    <!-- SLIDE 27: REFLEX ISLANDS (Placeholder) -->
+    <section class="slide" id="slide-27">
+        <div class="slide-number">27</div>
+        <div class="placeholder-content">PLACEHOLDER - REFLEX ISLANDS</div>
+    </section>
+
+    <!-- SLIDE 28: HAPTIC FEEDBACK (Placeholder) -->
+    <section class="slide" id="slide-28">
+        <div class="slide-number">28</div>
+        <div class="placeholder-content">PLACEHOLDER - HAPTIC FEEDBACK</div>
+    </section>
+
+    <!-- SLIDE 29: ENERGY (Placeholder) -->
+    <section class="slide" id="slide-29">
+        <div class="slide-number">29</div>
+        <div class="placeholder-content">PLACEHOLDER - ENERGY</div>
+    </section>
+
+    <!-- SLIDE 30: LONDON TEST (Placeholder) -->
+    <section class="slide" id="slide-30">
+        <div class="slide-number">30</div>
+        <div class="placeholder-content">PLACEHOLDER - LONDON DEPLOYMENT</div>
+    </section>
+
+    <!-- SLIDE 31: METRICS (Placeholder) -->
+    <section class="slide" id="slide-31">
+        <div class="slide-number">31</div>
+        <div class="placeholder-content">PLACEHOLDER - PERFORMANCE METRICS</div>
+    </section>
+
+    <!-- SLIDE 32: TRANSITION (Placeholder) -->
+    <section class="slide" id="slide-32">
+        <div class="slide-number">32</div>
+        <div class="placeholder-content">PLACEHOLDER - TRANSITION</div>
+    </section>
+
+    <!-- SLIDE 33: ROADMAP (Placeholder) -->
+    <section class="slide" id="slide-33">
+        <div class="slide-number">33</div>
+        <div class="placeholder-content">PLACEHOLDER - ROADMAP</div>
+    </section>
+
+    <!-- SLIDE 34: SENSORIMOTOR INTEGRATION -->
+    <section class="slide light col center pad-16" id="slide-34">
+        <h2 style="color: #0284c7; margin-bottom: 2rem;">Sensorimotor Integration</h2>
+        <div class="box-light">
+            <p style="color: #0f172a; margin-bottom: 1rem;">Insects don't just <span
+                    style="font-weight: 700; color: #0284c7;">see</span>. They <span
+                    style="font-weight: 700; color: #0284c7;">feel</span>.</p>
+        </div>
+        <div class="slide-number">34</div>
+    </section>
+
+    <!-- SLIDE 35: LEARNING WITHOUT LABELS -->
+    <section class="slide accent col center pad-16" id="slide-35">
+        <h2 style="margin-bottom: 1.5rem;">Learning Without Labels</h2>
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 8px;">
+            <p style="color: #ffffff; margin-bottom: 1rem;">Insects learn through <span
+                    style="font-weight: 700; color: #fef3c7;">interaction</span>, not datasets</p>
+        </div>
+        <div class="slide-number">35</div>
+    </section>
+
+    <!-- SLIDE 36: DISTRIBUTED INTELLIGENCE -->
+    <section class="slide light col center pad-16" id="slide-36">
+        <h2 style="color: #0284c7; margin-bottom: 2rem;">Distributed Intelligence</h2>
+        <div class="box-light">
+            <p style="color: #0f172a; margin-bottom: 1rem;">No Central Processor</p>
+            <p style="color: #0f172a;">Fault-tolerant by architecture</p>
+        </div>
+        <div class="slide-number">36</div>
+    </section>
+
+    <!-- SLIDE 37: BIGGER PICTURE (Placeholder) -->
+    <section class="slide" id="slide-37">
+        <div class="slide-number">37</div>
+        <div class="placeholder-content">PLACEHOLDER - BIGGER PICTURE</div>
+    </section>
+
+    <!-- SLIDE 38: KEY TAKEAWAYS (Placeholder) -->
+    <section class="slide" id="slide-38">
+        <div class="slide-number">38</div>
+        <div class="placeholder-content">PLACEHOLDER - KEY TAKEAWAYS</div>
+    </section>
+
+    <!-- SLIDE 39: PARADIGM SHIFT / CONCLUSION -->
+    <section class="slide accent col center pad-16" id="slide-39">
+        <h1 style="color: #ffffff; margin-bottom: 1.5rem; font-size: 3rem;">The Future Starts Here</h1>
+        <div class="line-separator"></div>
+        <p style="color: #ffffff; font-size: 1.125rem; max-width: 750px; margin-top: 2rem; line-height: 1.8;">Nature is
+            the largest laboratory of engineering ever created.</p>
+        <div class="slide-number">39</div>
+    </section>
+
+</body>
+
+</html>
