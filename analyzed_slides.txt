@@ -1,0 +1,40 @@
+Slide 0: Cover - Edge AI in Nature
+Slide 1: Hook - What if a bee...
+Slide 2: A Single Tiny Fly
+Slide 3: Brain Size of a Pinhead
+Slide 4: What is Edge AI?
+Slide 5: The Millisecond That Matters
+Slide 6: Why Edge AI Matters (Latency Comparison)
+Slide 7: The Two-Tier Brain
+Slide 8: The Reflex Tier
+Slide 9: The Policy Tier
+Slide 10: From Biology to Silicon
+Slide 11: The Bee: Navigator
+Slide 12: Hardware Technologies
+Slide 13: The Hardware Shift (Neuromorphic vs Traditional)
+Slide 14: MRAM & Spintronics
+Slide 15: The Energy Secret: Thermoregulation
+Slide 16: The Four Thermal Phases
+Slide 17: Two Real-World Examples
+Slide 18: IFEVS Thruster
+Slide 19: The Natural Engine (IFEVS Hot-Core Architecture)
+Slide 20: Flat-Band Efficiency
+Slide 21: IFEVS Thruster: The Numbers
+Slide 22: Thermoregulation (4-Phase Cycle)
+Slide 23: Placeholder - Transition
+Slide 24: Cargo-Bike Safety Shell
+Slide 25: Placeholder - Problem Statement
+Slide 26: Placeholder - Sensor Details
+Slide 27: Placeholder - Reflex Islands
+Slide 28: Placeholder - Haptic Feedback
+Slide 29: Placeholder - Energy
+Slide 30: Placeholder - London Deployment
+Slide 31: Placeholder - Performance Metrics
+Slide 32: Placeholder - Transition
+Slide 33: Placeholder - Roadmap
+Slide 34: Sensorimotor Integration
+Slide 35: Learning Without Labels
+Slide 36: Distributed Intelligence
+Slide 37: Placeholder - Bigger Picture
+Slide 38: Placeholder - Key Takeaways
+Slide 39: The Future Starts Here

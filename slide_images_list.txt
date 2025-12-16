@@ -1,0 +1,40 @@
+Slide 0: immagine cover.jpg
+Slide 1: immagine cover.jpg
+Slide 2: fly_compound_eye_fixed.png
+Slide 3: fly_brain_comparison.png
+Slide 4: Edge_AI_Definition_v2.jpg
+Slide 5: Survival_Reflex_Fly.png
+Slide 6: Latency_Comparison_v2.png
+Slide 7: Two_Tier_Brain_Concept.png
+Slide 8: Reflex_Tier_Action.png
+Slide 9: Policy_Tier_Navigation.png
+Slide 10: Biology_to_Silicon_Concept.png
+Slide 11: Bee_Navigator_Diagram.png
+Slide 12: no image required
+Slide 13: Neuromorphic_vs_Traditional.png
+Slide 14: MRAM_Technology_Stack.png
+Slide 15: no image required
+Slide 16: no image required
+Slide 17: no image required
+Slide 18: no image required
+Slide 19: IFEVS_vs_Turbine_CrossSection.png
+Slide 20: IFEVS_Flat_Band_Efficiency.jpg
+Slide 21: IFEVS_Thruster_Metrics_v2.jpg
+Slide 22: Thermoregulation_4Phase_Cycle_v2.jpg
+Slide 23: no image required
+Slide 24: IFEVS bike shell3.jpg
+Slide 25: no image required
+Slide 26: no image required
+Slide 27: no image required
+Slide 28: no image required
+Slide 29: no image required
+Slide 30: no image required
+Slide 31: no image required
+Slide 32: no image required
+Slide 33: no image required
+Slide 34: no image required
+Slide 35: no image required
+Slide 36: no image required
+Slide 37: no image required
+Slide 38: no image required
+Slide 39: no image required
