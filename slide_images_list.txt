@@ -1,25 +1,25 @@
 Slide 0: immagine cover.jpg
 Slide 1: immagine cover.jpg
 Slide 2: fly_compound_eye_fixed.png
-Slide 3: fly_brain_comparison.png
-Slide 4: Edge_AI_Definition_v2.jpg
+Slide 3: slide3_brain_comparison_new.png
+Slide 4: slide4_edge_ai_concept_new.png
 Slide 5: Survival_Reflex_Fly.png
-Slide 6: Latency_Comparison_v2.png
+Slide 6: slide6_latency_chart_new.png
 Slide 7: Two_Tier_Brain_Concept.png
-Slide 8: Reflex_Tier_Action.png
+Slide 8: slide8_reflex_loop_new.png
 Slide 9: Policy_Tier_Navigation.png
-Slide 10: Biology_to_Silicon_Concept.png
+Slide 10: slide10_bio_silicon_mirror_new.png
 Slide 11: Bee_Navigator_Diagram.png
 Slide 12: no image required
-Slide 13: Neuromorphic_vs_Traditional.png
-Slide 14: MRAM_Technology_Stack.png
+Slide 13: slide13_signals_new.png
+Slide 14: slide14_mram_mtj_new.png
 Slide 15: no image required
 Slide 16: no image required
 Slide 17: no image required
 Slide 18: no image required
-Slide 19: IFEVS_vs_Turbine_CrossSection.png
-Slide 20: IFEVS_Flat_Band_Efficiency.jpg
-Slide 21: IFEVS_Thruster_Metrics_v2.jpg
+Slide 19: slide19_ifevs_engine_new.png
+Slide 20: slide20_efficiency_curve_new.png
+Slide 21: slide21_metrics_icons_new.png
 Slide 22: Thermoregulation_4Phase_Cycle_v2.jpg
 Slide 23: no image required
 Slide 24: IFEVS bike shell3.jpg
